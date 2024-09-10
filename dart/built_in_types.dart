@@ -55,3 +55,17 @@ double age2 = 16; // => 16.0
 
 // var r  = r'Roziya \n Tukhtayeva
 // Roziya Tukhtayeva
+
+// # Runes and grapheme clusters
+// t put emoji like this  \u2665
+
+// import 'package:characters/characters.dart';
+
+// void main() {
+//   var hi = 'Hi 🇩🇰';
+//   print(hi);
+//   print('The end of the string: ${hi.substring(hi.length - 1)}');
+//   print('The last character: ${hi.characters.last}');
+// }
+
+// symbol it's like #private
