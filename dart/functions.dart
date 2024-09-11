@@ -47,3 +47,15 @@
 // for (var item in uppercaseList) {
 //   print('$item: ${item.length}');
 // }
+
+
+// set, list
+// we use Set<type> to {} this arr and List<type> to [] arr
+// in set we can't dublicate values like Set<String> names = {'Roziya', 'Mario', 'Roziya'}
+// it won't give error but last dublicated values won't show when we run it
+// in List we can dublicate 
+// for adding two of them works same
+// listName.add('...')
+// listName.remove("value of one of the element")
+// listName.removeLast() // it'll just remove from end
+// listName.shuffle() // it will restore orders of list/set randomly
