@@ -59,3 +59,38 @@
 // listName.remove("value of one of the element")
 // listName.removeLast() // it'll just remove from end
 // listName.shuffle() // it will restore orders of list/set randomly
+
+// for loops are same with js
+//
+// void main() {
+//   List<int> scores = [20, 55, 60, 30, 50, 30];
+  
+//   for (int score in scores.where((e)=> e > 50)){
+// // -------------- in here we put where which is like a filter like condition as if 
+//     print("Score is $score");
+//   }
+// }
+
+/// ----- maps -----
+
+
+// void main() {
+//   var planets = {
+//     'first': 'mercury',
+//     'second': 'venus',
+//     'third': 'earth',
+//     'fourth': 'mars',
+//     'fifth': 'jupiter',
+//   };
+  
+// this way we can add elements
+//   planets['sixth'] = 'urunas';
+
+// this way we can get keys
+//   print(planets.containsKey('first'));
+
+// this way we can remove spesific element
+//   print(planets.remove('first'));
+  
+//   print(planets);
+// }
