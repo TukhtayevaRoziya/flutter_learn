@@ -22,27 +22,34 @@ class MyApp extends StatelessWidget {
             ),
           ),
           child: Container(
+            padding: const EdgeInsets.all(15),
             child: Column(mainAxisAlignment: MainAxisAlignment.end, children: [
               Text(
-                '23 34Coffee so good, your taste buds will love it.',
+                'Coffee so good, your taste buds will love it.',
+                textAlign: TextAlign.center,
                 style: TextStyle(
                     color: Colors.white,
-                    fontSize: 34,
+                    fontSize: 42,
                     fontWeight: FontWeight.bold),
               ),
-              Container(
-                  child: Row(
-                children: [
-                  Image.asset('assets/google_icon.png'),
-                  Text('sdfsdf')
-                ],
-              )),
               Text(
-                '45 23 34Coffee so good, your taste buds will love it.',
-                style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 34,
-                    fontWeight: FontWeight.bold),
+                'The best grain, the finest roast, the powerful flavor..',
+                textAlign: TextAlign.center,
+                style: TextStyle(color: Color(0xffA9A9A9), fontSize: 24),
+              ),
+              Container(
+                child: Row(
+                  children: [
+                    Image.asset('assets/google_icon.png'),
+                    Text(
+                      '23sdfsdf',
+                      textAlign: TextAlign.center,
+                    )
+                  ],
+                ),
+                color: Colors.white,
+                margin: EdgeInsets.all(15),
+                padding: EdgeInsets.only(top: 15, bottom: 15),
               ),
             ]),
           ),
