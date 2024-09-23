@@ -37,7 +37,7 @@ class LoginPage extends StatelessWidget {
                   context,
                   MaterialPageRoute(
                       builder: (context) =>
-                          HomePage(data: 'Hello from First Screen!')),
+                          HomePage()),
                 );
               },
               child: Row(
