@@ -1,106 +1,4 @@
-// import 'package:flutter/material.dart';
-
-// class HomePage extends StatelessWidget {
-
-//   final String data;
-
-//   HomePage({required this.data});
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//         body: Container(
-//       child: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
-//         Container(
-//             color: Color(0xff242424),
-//             padding: EdgeInsets.only(left: 30, right: 30),
-//             height: 270,
-//             width: MediaQuery.of(context).size.width * 1,
-//             child:
-//                 Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-//               Row(children: [
-//                 Column(
-//                   mainAxisAlignment: MainAxisAlignment.center,
-//                   crossAxisAlignment: CrossAxisAlignment.start,
-//                   children: [
-//                     Text(
-//                       'Location',
-//                       style: TextStyle(color: Colors.white, fontSize: 20),
-//                     ),
-//                     const SizedBox(height: 4),
-//                     Text(
-//                       'Bilzen,Tanjungbalai',
-//                       style: TextStyle(
-//                           color: Colors.white,
-//                           fontSize: 25,
-//                           fontWeight: FontWeight.bold),
-//                     ),
-
-//                     // ),
-//                   ],
-//                 ),
-//                 Expanded(
-//                     child: Image.asset(
-//                   'assets/profilePic.png',
-//                   fit: BoxFit.contain,
-//                   alignment: Alignment.bottomCenter,
-//                   width: 70,
-//                   height: 60,
-//                 ))
-//               ]),
-//               Column(
-//                 children: [
-//                   TextFormField(
-//                     style: TextStyle(
-//                       color: Colors.white,
-//                     ),
-//                     decoration: const InputDecoration(
-//                         //  border: InputBorder(borderSide: BorderSide(width: 15, C)),
-//                         hintText: 'Search coffee',
-//                         fillColor: Colors.white),
-//                     validator: (String? value) {
-//                       if (value == null || value.isEmpty) {
-//                         return 'Please enter Search coffee';
-//                       }
-//                       return null;
-//                     },
-//                   ),
-//                 ],
-//               ),
-//             ])),
-//         Expanded(
-//             child: Image.asset(
-//           'assets/home_1.png',
-//           fit: BoxFit.contain,
-//           alignment: Alignment.bottomCenter,
-//           width: 70,
-//           height: 60,
-//         )),
-//         Text('sdfsd')
-//       ]),
-//     ));
-//   }
-// }
-
 import 'package:flutter/material.dart';
-
-// void main() {
-//   runApp(MyApp());
-// }
-
-// class MyApp extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       // title: 'Bottom Navigation Bar Example',
-//       // theme: ThemeData(
-//       //   primarySwatch: Colors.blue,
-//       // ),
-//       home: HomePage(),
-//     );
-//   }
-// }
-
 class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
@@ -108,12 +6,6 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int _currentIndex = 0;
-
-  final List<Widget> _children = [
-    HomeScreen(),
-    SearchScreen(),
-    ProfileScreen(),
-  ];
 
   void onTappedBar(int index) {
     setState(() {
@@ -124,7 +16,6 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        // body: _children[_currentIndex],
         bottomNavigationBar: BottomNavigationBar(
           items: const [
             BottomNavigationBarItem(
@@ -173,7 +64,6 @@ class _HomePageState extends State<HomePage> {
                                   fontWeight: FontWeight.bold),
                             ),
 
-                            // ),
                           ],
                         ),
                         Expanded(
@@ -192,7 +82,6 @@ class _HomePageState extends State<HomePage> {
                               color: Colors.white,
                             ),
                             decoration: const InputDecoration(
-                                //  border: InputBorder(borderSide: BorderSide(width: 15, C)),
                                 hintText: 'Search coffee',
                                 fillColor: Colors.white),
                             validator: (String? value) {
