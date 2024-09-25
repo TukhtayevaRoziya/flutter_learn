@@ -65,6 +65,7 @@ class _HomePageState extends State<HomePage> {
                         BoxShadow(color: Color(0xFFE7EBF7), blurRadius: 20))),
               ))),
           ListView.builder(
+            itemCount: LapsList.length,
             itemBuilder: (context, index) {
               return Padding(
                 padding: EdgeInsets.only(top: 30, left: 10, bottom: 5),
