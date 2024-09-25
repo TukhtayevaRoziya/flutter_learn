@@ -42,7 +42,32 @@ class _HomePageState extends State<HomePage> {
               )),
             ),
           ))),
-      body: Column(),
+      body: Column(
+        children: [
+          Padding(
+              padding: EdgeInsets.only(top: 80),
+              child: Center(
+                  child: Container(
+                height: 250,
+                width: 250,
+                child: Center(
+                    child: Text(
+                  '00:00:00',
+                  style: TextStyle(color: Colors.black, fontSize: 40),
+                )),
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(360),
+                    boxShadow: List.filled(10,
+                        BoxShadow(color: Color(0xFFE7EBF7), blurRadius: 20))),
+              ))),
+          Container(
+            height: 120,
+            width: 180,
+            decoration: BoxDecoration(color: Colors.white),
+          )
+        ],
+      ),
     );
   }
 }
