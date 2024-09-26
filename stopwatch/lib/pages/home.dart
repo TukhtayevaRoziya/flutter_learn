@@ -21,6 +21,20 @@ class _HomeState extends State<Home> {
     {'lap': 'LAP 5', 'time': '02:01:47'}
   ];
 
+  Timer? _timer;
+  Duration _elapsedTime = Duration.zero;
+
+  bool isStart = false;
+  bool isPause = false;
+
+  String timeFormat(Duration _duration) {
+    String twodigited(int n) => n.toString().padLeft(2, '0');
+    String Hour = twodigited(_duration.inHours);
+    String Min = twodigited(_duration.inMinutes.remainder(60));
+    String Sec = twodigited(_duration.inSeconds.remainder(60));
+    return '$Hour:$Min:$Sec';
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
