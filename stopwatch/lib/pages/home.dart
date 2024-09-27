@@ -25,14 +25,65 @@ class _HomeState extends State<Home> {
   Duration _elapsedTime = Duration.zero;
 
   bool isStart = false;
-  bool isPause = false;
+  bool ispause = false;
 
-  String timeFormat(Duration _duration) {
+  String timeFormate(Duration _duration) {
+    // 1:23:5 => 01:23:05
     String twodigited(int n) => n.toString().padLeft(2, '0');
     String Hour = twodigited(_duration.inHours);
     String Min = twodigited(_duration.inMinutes.remainder(60));
     String Sec = twodigited(_duration.inSeconds.remainder(60));
     return '$Hour:$Min:$Sec';
+  }
+
+  void StarWatch() {
+    // on Stopwatch Start
+
+    if (isStart) {
+      _timer = Timer.periodic(Duration(seconds: 1), (timer) {
+        setState(() {
+          _elapsedTime += Duration(seconds: 1);
+        });
+      });
+    }
+
+    setState(() {
+      isStart = true;
+    });
+  }
+
+  void PauseWatch() {
+    _timer?.cancel();
+    setState(() {
+      ispause = true;
+      isStart = false;
+    });
+  }
+
+  void Reset() {
+    _timer?.cancel();
+    _elapsedTime = Duration.zero;
+    LapsList.clear();
+    setState(() {
+      isStart = false;
+      ispause = false;
+    });
+  }
+
+  void Stop() {
+    _timer?.cancel();
+    _elapsedTime = Duration.zero;
+    setState(() {
+      isStart = false;
+      ispause = false;
+    });
+  }
+
+  void Laps() {
+    LapsList.add({
+      'lap': 'LAP ${LapsList.length + 1}',
+      'time': timeFormate(_elapsedTime)
+    });
   }
 
   @override
@@ -77,6 +128,11 @@ class _HomeState extends State<Home> {
             padding: EdgeInsets.only(top: 110),
             child: Center(
                 child: InkWell(
+              onTap: () {
+                if (isStart) {
+                  Laps();
+                }
+              },
               child: Container(
                   height: 270,
                   width: 270,
@@ -87,8 +143,7 @@ class _HomeState extends State<Home> {
                           10, BoxShadow(color: highlight, blurRadius: 30))),
                   child: Center(
                     child: Text(
-                      // timeFormate(_elapsedTime),
-                      '00:00:00',
+                      timeFormate(_elapsedTime),
                       style: TextStyle(
                           color: Colors.black,
                           fontSize: 40,
@@ -162,61 +217,106 @@ class _HomeState extends State<Home> {
               },
             ),
           ),
+
           Spacer(),
+
           Padding(
             padding: EdgeInsets.only(bottom: 50),
             child: Row(
+              mainAxisSize: MainAxisSize.max,
               children: [
+                // Button 1 - Start, pause, resume
                 Padding(
-                  padding: EdgeInsets.only(left: 20),
-                  child: Container(
-                    height: 60,
-                    width: 170,
-                    decoration: BoxDecoration(
-                        color: Colors.black87,
-                        borderRadius: BorderRadius.circular(360)),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(
-                          Icons.play_arrow_rounded,
-                          color: Colors.white,
-                          size: 35,
+                    padding: EdgeInsets.only(left: 15),
+                    child: InkWell(
+                      onTap: () {
+                        if (isStart) {
+                          PauseWatch();
+                        } else {
+                          isStart = true;
+                          StarWatch();
+                        }
+                      },
+                      child: Container(
+                        height: 60,
+                        width: 170,
+                        decoration: BoxDecoration(
+                          color: Colors.black87,
+                          borderRadius: BorderRadius.circular(360),
                         ),
-                        Text(
-                          'START',
-                          style: TextStyle(
-                              color: Colors.grey.shade400, fontSize: 19),
-                        )
-                      ],
-                    ),
-                  ),
-                ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(
+                              isStart
+                                  ? Icons.pause_rounded
+                                  : Icons.play_arrow_rounded,
+                              color: Colors.grey.shade300,
+                              size: 35,
+                            ),
+                            Container(
+                              width: 10,
+                            ),
+                            Text(
+                              isStart
+                                  ? 'PAUSE'
+                                  : ispause
+                                      ? 'RESUME'
+                                      : 'START',
+                              style: TextStyle(
+                                color: Colors.grey.shade300,
+                                fontSize: 19,
+                                fontFamily: 'Ubuntu',
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                    )),
+
+                Spacer(),
+
+                // Button 2 - Reset, stop
                 Padding(
-                  padding: EdgeInsets.only(left: 20.0),
-                  child: Container(
-                    height: 60,
-                    width: 170,
-                    decoration: BoxDecoration(
-                        color: Colors.black87,
-                        borderRadius: BorderRadius.circular(360)),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(
-                          Icons.restart_alt,
-                          color: Colors.white,
-                          size: 35,
+                    padding: EdgeInsets.only(right: 15),
+                    child: InkWell(
+                      onTap: () {
+                        if (isStart) {
+                          Stop();
+                        } else {
+                          Reset();
+                        }
+                      },
+                      child: Container(
+                        height: 60,
+                        width: 170,
+                        decoration: BoxDecoration(
+                          color: Colors.black87,
+                          borderRadius: BorderRadius.circular(360),
                         ),
-                        Text(
-                          'RESET',
-                          style: TextStyle(
-                              color: Colors.grey.shade400, fontSize: 19),
-                        )
-                      ],
-                    ),
-                  ),
-                )
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(
+                              isStart ? Icons.stop_rounded : Icons.restart_alt,
+                              color: Colors.grey.shade300,
+                              size: 35,
+                            ),
+                            Container(
+                              width: 10,
+                            ),
+                            Text(
+                              isStart ? 'STOP' : 'RESET',
+                              style: TextStyle(
+                                color: Colors.grey.shade300,
+                                fontSize: 19,
+                                fontFamily: 'Ubuntu',
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                    ))
               ],
             ),
           )
