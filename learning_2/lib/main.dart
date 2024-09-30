@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:learning_2/my_contain.dart';
-import 'package:learning_2/my_scaffold.dart';
+import 'package:learning_2/column.dart';
 
 void main() {
   runApp(const MyApp());
@@ -35,7 +34,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         // useMaterial3: true,
       ),
-      home: const MyContain(),
+      home: const MyColumn(),
     );
   }
 }
