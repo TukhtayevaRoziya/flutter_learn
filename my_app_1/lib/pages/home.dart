@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
@@ -35,75 +36,110 @@ class _HomePageState extends State<HomePage> {
           selectedItemColor: Colors.blue,
           onTap: onTappedBar,
         ),
-        body: Container(
-          child: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
-            Container(
-                color: Color(0xff242424),
-                padding: EdgeInsets.only(left: 30, right: 30),
-                height: 270,
-                width: MediaQuery.of(context).size.width * 1,
-                child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Row(children: [
+        body: SafeArea(
+          child: Container(
+            child:
+                Column(mainAxisAlignment: MainAxisAlignment.start, children: [
+              Container(
+                  color: Color(0xff242424),
+                  padding: EdgeInsets.only(left: 30, right: 30, top: 10),
+                  height: 270,
+                  width: MediaQuery.of(context).size.width * 1,
+                  child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Row(children: [
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Location',
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 20),
+                              ),
+                              const SizedBox(height: 4),
+                              Text(
+                                'Bilzen,Tanjungbalai',
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 25,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ],
+                          ),
+                          Expanded(
+                              child: Image.asset(
+                            'assets/profilePic.png',
+                            fit: BoxFit.contain,
+                            alignment: Alignment.bottomCenter,
+                            width: 70,
+                            height: 60,
+                          ))
+                        ]),
                         Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
-                              'Location',
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 20),
-                            ),
-                            const SizedBox(height: 4),
-                            Text(
-                              'Bilzen,Tanjungbalai',
+                            TextFormField(
                               style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 25,
-                                  fontWeight: FontWeight.bold),
+                                color: Colors.white,
+                              ),
+                              decoration: const InputDecoration(
+                                  hintText: 'Search coffee',
+                                  fillColor: Colors.white),
+                              validator: (String? value) {
+                                if (value == null || value.isEmpty) {
+                                  return 'Please enter Search coffee';
+                                }
+                                return null;
+                              },
                             ),
-
+                            Container(
+                              // height: double.infinity,
+                              height: 130,
+                              child: Image.asset(
+                                'assets/home_1.png',
+                                fit: BoxFit.contain,
+                                alignment: Alignment.bottomCenter,
+                                width: 200,
+                                height: 60,
+                              ),
+                            ),
                           ],
                         ),
-                        Expanded(
-                            child: Image.asset(
-                          'assets/profilePic.png',
-                          fit: BoxFit.contain,
-                          alignment: Alignment.bottomCenter,
-                          width: 70,
-                          height: 60,
-                        ))
-                      ]),
-                      Column(
+                      ])),
+              Text('double.infinity'),
+              ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemBuilder: (context, index) {
+                    return Container(
+                      width: double.infinity,
+                      child: Row(
                         children: [
-                          TextFormField(
-                            style: TextStyle(
-                              color: Colors.white,
-                            ),
-                            decoration: const InputDecoration(
-                                hintText: 'Search coffee',
-                                fillColor: Colors.white),
-                            validator: (String? value) {
-                              if (value == null || value.isEmpty) {
-                                return 'Please enter Search coffee';
-                              }
-                              return null;
-                            },
-                          ),
+                          TextButton(
+                              onPressed: () => {}, child: Text('Cappuccino')),
+                          TextButton(
+                              onPressed: () => {}, child: Text('Cappuccino')),
+                          TextButton(
+                              onPressed: () => {}, child: Text('Cappuccino')),
+                          TextButton(
+                              onPressed: () => {}, child: Text('Cappuccino')),
+                          TextButton(
+                              onPressed: () => {}, child: Text('Cappuccino')),
                         ],
                       ),
-                    ])),
-            Expanded(
-                child: Image.asset(
-              'assets/home_1.png',
-              fit: BoxFit.contain,
-              alignment: Alignment.bottomCenter,
-              width: 70,
-              height: 60,
-            )),
-            Text('sdfsd')
-          ]),
+                    );
+                  }),
+              Expanded(
+                  child: Image.asset(
+                'assets/home_1.png',
+                fit: BoxFit.contain,
+                alignment: Alignment.bottomCenter,
+                width: 70,
+                height: 60,
+              )),
+              Text('sdfsd'),
+            ]),
+          ),
         ));
   }
 }
