@@ -1,15 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:my_app_1/utils/toDo_list.dart';
 
 // ignore: must_be_immutable
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   HomePage({super.key});
 
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
   List toDoList = [
     ['Learn Flutter', false],
-    ['Drink Coffee', false],
+    ['Drink Coffee', true],
     ['Eat Well', false],
     ['Stay happy', false],
+    ['Do not be sad', false],
   ];
+
+  void checkboxChanged(int index) {
+    setState(() {
+      toDoList[index][1] = !toDoList[index][1];
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -23,18 +36,10 @@ class HomePage extends StatelessWidget {
         body: ListView.builder(
             itemCount: toDoList.length,
             itemBuilder: (BuildContext context, index) {
-              return Padding(
-                padding: const EdgeInsets.all(20),
-                child: Container(
-                  padding: const EdgeInsets.all(20),
-                  decoration: BoxDecoration(
-                      color: Colors.deepPurple,
-                      borderRadius: BorderRadius.circular(15)),
-                  child: Text(
-                    toDoList[index][0],
-                    style: const TextStyle(color: Colors.white, fontSize: 18),
-                  ),
-                ),
+              return TodoList(
+                taskName: toDoList[index][0],
+                taskCompleted: toDoList[index][1],
+                onChanged: (value) => checkboxChanged(index),
               );
             }));
   }
