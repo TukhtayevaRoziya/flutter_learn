@@ -41,6 +41,10 @@ class _HomePageState extends State<HomePage> {
                 taskCompleted: toDoList[index][1],
                 onChanged: (value) => checkboxChanged(index),
               );
-            }));
+            }),
+        floatingActionButton: FloatingActionButton(
+            onPressed: () {}, child: const Icon(Icons.add)));
+
+    // )
   }
 }
